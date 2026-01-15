@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+    stages{
+        stage('Cgeckout'){
+            steps{git 'https://github.com/kalyanibhuyar0303/Pipline.git'}
+        }
+        stage('Build'){
+            step{sh 'mvn test'}
+        }
+        }
+        post{
+            always{junit 'target/surefire-reports/*.xml'
+        }
+    }
